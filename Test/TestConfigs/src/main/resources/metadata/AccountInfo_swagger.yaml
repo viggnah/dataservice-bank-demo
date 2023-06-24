@@ -1,0 +1,21 @@
+openapi: 3.0.1
+info:
+  title: AccountInfo
+  description: API Definition of AccountInfo
+  version: 1.0.0
+servers:
+- url: http://localhost:8290/account
+paths:
+  /{account_id}:
+    get:
+      parameters:
+      - name: account_id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        default:
+          description: Default response

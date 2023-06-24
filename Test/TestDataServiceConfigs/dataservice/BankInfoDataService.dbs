@@ -1,0 +1,53 @@
+<data name="BankInfoDataService" serviceNamespace="" serviceGroup="" transports="http https" disableStreaming="true">
+  <description />
+  <config id="BankInfo">
+    <property name="driverClassName">com.mysql.cj.jdbc.Driver</property>
+    <property name="url">jdbc:mysql://localhost:3306/bankinfo</property>
+    <property name="username">root</property>
+    <property name="password">password123</property>
+  </config>
+  <resource method="GET" path="account/{account_id}">
+    <description />
+    <call-query href="GetAccountInfo">
+      <with-param name="account_id" query-param="account_id" />
+    </call-query>
+  </resource>
+  <query id="GetAccountInfo" useConfig="BankInfo">
+    <sql>select account_id, account_name, account_number, account_type, account_balance from account where account_id=:account_id</sql>
+    <param name="account_id" paramType="SCALAR" sqlType="STRING" />
+    <result outputType="json">{
+    "account_data": {
+        "account_id": "$account_id",
+        "account_name": "$account_name",
+        "account_number": "$account_number",
+        "account_type": "$account_type",
+        "account_balance": $account_balance
+    }
+}</result>
+  </query>
+  <query id="GetTxnInfo" useConfig="BankInfo">
+    <sql>select transaction_id, account_id, transaction_type, transaction_amount, transaction_date, merchant_id, comment from transaction where account_id = :account_id</sql>
+    <param name="account_id" paramType="SCALAR" sqlType="STRING" />
+    <result outputType="json">{
+    "transactions": {
+        "transaction": [
+            {
+                "transaction_id": "$transaction_id",
+                "account_id": "$account_id",
+                "transaction_type": "$transaction_type",
+                "transaction_amount": "$transaction_amount",
+                "transaction_date": "$transaction_date",
+                "merchant_id": "$merchant_id",
+                "comment": "$comment"
+            }
+        ]
+    }
+}</result>
+  </query>
+  <resource method="GET" path="transaction/{account_id}">
+    <description />
+    <call-query href="GetTxnInfo">
+      <with-param name="account_id" query-param="account_id" />
+    </call-query>
+  </resource>
+</data>

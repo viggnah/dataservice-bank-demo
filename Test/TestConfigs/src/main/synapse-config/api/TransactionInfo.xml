@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/transaction" name="TransactionInfo" statistics="enable" trace="enable" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET" uri-template="/{account_id}">
+        <inSequence>
+            <log/>
+            <sequence key="CallTransactionDSEP"/>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>
