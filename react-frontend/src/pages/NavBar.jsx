@@ -43,8 +43,8 @@ const LoginStatusBar = props => {
             </div>
         );
     } else {
-        // return <></>
-        return <Nav.Link onClick={() => signIn()}>Login</Nav.Link>
+        return <></>
+        // return <Nav.Link onClick={() => signIn()}>Login</Nav.Link>
     }
 }
 

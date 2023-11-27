@@ -16,8 +16,8 @@ const AcctAndTxns = () => {
 
     const headers = {
         headers: { 
-            Authorization: `Bearer ${localStorage.getItem('accessToken')}`, 
-            // Authorization: `Bearer ${AccessToken}`, 
+            // Authorization: `Bearer ${localStorage.getItem('accessToken')}`, 
+            Authorization: `Bearer ${AccessToken}`, 
             Accept: 'application/json' 
         }
     };
@@ -36,7 +36,9 @@ const AcctAndTxns = () => {
         axios.get(APIM_TXN_HOST + acctId, headers).then(responseData => {
             if (responseData.data.transactions.transaction !== undefined) {
                 setTxnInfo(responseData.data.transactions.transaction);
-            } 
+            } else {
+                setTxnInfo([]);
+            }
         });
         setFetchData(false);
     }, [fetchData]);
@@ -116,7 +118,7 @@ const AcctAndTxns = () => {
                                                     {item.transaction_id}<br/>
                                                     {item.transaction_date}<br/>
                                                     {item.account_id}<br/>
-                                                    UGX {item.transaction_amount}<br/>
+                                                    USD {item.transaction_amount}<br/>
                                                     {item.comment}<br/>
                                                     {item.merchant_id}<br/>
                                                     {item.transaction_type}

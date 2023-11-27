@@ -21,10 +21,10 @@ curl -X GET "http://localhost:8290/services/BankInfoDataService/account/1" -H "a
 curl -X GET "http://localhost:8290/services/BankInfoDataService/transaction/1" -H "accept: application/json"
 ```
 * Now the React App should be able to call the API and display the data
-<!-- Add some troubleshooting info -->
+
 > **Troubleshooting Info**\
 Don't use a semicolon after the SQL query in the dataservice as this leads to a syntax error\
-Follow the [4 rules in the Info box](https://apim.docs.wso2.com/en/latest/integrate/examples/data_integration/json-with-data-service/#synapse-configuration) to get the output in JSON format otherwise there will be an error\
+Follow the [4 rules in the Info box](https://apim.docs.wso2.com/en/4.2.0/integrate/examples/data_integration/json-with-data-service/#synapse-configuration) to get the output in JSON format otherwise there will be an error\
 The header `accept: application/json` is required to get the output in JSON format otherwise it will be in XML format
 
 ## Expose the REST API via API Manager
@@ -41,7 +41,13 @@ password = "admin"
 * Left click on the `TestCompositeExporter` and select `Export Project Artifacts and Run` again. This time it should be show up on the service catalog in APIM.
 * Create an API out of the service and publish it
 * Subscribe to the API and generate the keys from the developer portal
-* Hardcode the access toke for now in the React App to call the API (will be changed in the next step)
+* Generate the access token from the developer portal as well
+* Hard code the access token for now in the React App to call the API (will be changed in the next step)
+
+> **Troubleshooting Info**\
+If you get CORS errors, try deploying the sample PizzaShack API and call it from the Try Out tab in the publisher portal. If that also gives a CORS error, then restart the API Manager and try again. 
 
 ## Use Identity Server for App Login and API Security (3rd party Key Manager for API Manager)
 >![Interaction between MI, APIM, and IS](./readme-imgs/MI+APIM+IS.png)
+
+* Configure the Identity Server as a (3rd party Key Manager for the API Manager)[https://apim.docs.wso2.com/en/4.2.0/administer/key-managers/configure-wso2is-connector/]
