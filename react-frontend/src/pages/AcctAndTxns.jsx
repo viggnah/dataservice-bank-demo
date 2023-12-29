@@ -29,7 +29,7 @@ const AcctAndTxns = () => {
         axios.get(APIM_ACCT_HOST + acctId, headers).then(responseData => {
             setAcctInfo(responseData.data);
         }).catch(error => {
-            if (error.response.status === 429) {
+            if (error.response.status === 429 || error.response.status === 403 || error.response.status === 401) {
                 setAcctInfo({ERROR: error.response.data});
             }
         });

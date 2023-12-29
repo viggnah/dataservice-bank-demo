@@ -8,12 +8,12 @@ import { useState } from 'react';
 const LoginStatusBar = props => {
     const { state, signIn, signOut, getDecodedIDToken, getAccessToken } = useAuthContext();
     let authenticated = localStorage.getItem('authenticated');
-    // console.log(state);
 
     const decodedToken = async () => {
         if (state.isAuthenticated === true) {
             let token = await getDecodedIDToken();
             props.setDecodedToken(token);
+            console.log("ID Token: " + token);
             localStorage.setItem('decodedId', token);
         }
     };
@@ -29,8 +29,10 @@ const LoginStatusBar = props => {
     if (authenticated != null
         || state?.isAuthenticated === true) {
         if (authenticated == null) {
+            console.log("State: " + JSON.stringify(state));
             localStorage.setItem('authenticated', true);
-            localStorage.setItem('userName', state.username);
+            localStorage.setItem('userName', state.username); // Asgardeo, IS
+            // localStorage.setItem('userName', state.sub); // APIM
             decodedToken();
             accessToken();
         }
@@ -43,8 +45,8 @@ const LoginStatusBar = props => {
             </div>
         );
     } else {
-        return <></>
-        // return <Nav.Link onClick={() => signIn()}>Login</Nav.Link>
+        // return <></>
+        return <Nav.Link onClick={() => signIn()}>Login</Nav.Link>
     }
 }
 

@@ -50,4 +50,4 @@ If you get CORS errors, try deploying the sample PizzaShack API and call it from
 ## Use Identity Server for App Login and API Security (3rd party Key Manager for API Manager)
 >![Interaction between MI, APIM, and IS](./readme-imgs/MI+APIM+IS.png)
 
-* Configure the Identity Server as a (3rd party Key Manager for the API Manager)[https://apim.docs.wso2.com/en/4.2.0/administer/key-managers/configure-wso2is-connector/]
+* Configure the Identity Server as a [3rd party Key Manager for the API Manager](https://apim.docs.wso2.com/en/4.2.0/administer/key-managers/configure-wso2is-connector/)
