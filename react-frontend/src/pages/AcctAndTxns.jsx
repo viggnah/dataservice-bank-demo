@@ -39,6 +39,10 @@ const AcctAndTxns = () => {
             } else {
                 setTxnInfo([]);
             }
+        }).catch(error => {
+            if (error.response.status === 429 || error.response.status === 403 || error.response.status === 401) {
+                setTxnInfo([{ERROR: error.response.data}]);
+            }
         });
         setFetchData(false);
     }, [fetchData]);
@@ -105,24 +109,32 @@ const AcctAndTxns = () => {
                                         {txnInfo.map((item, index) => (
                                             <tr key={index}>
                                                 <td>{index + 1}</td>
-                                                <td>
-                                                    Transaction ID:<br/>
-                                                    Transaction Date:<br/>
-                                                    Account ID:<br/>
-                                                    Transaction Amount:<br/>
-                                                    Comment:<br/>
-                                                    Merchant ID:<br/>
-                                                    Transaction Type:<br/>
-                                                </td>
-                                                <td>
-                                                    {item.transaction_id}<br/>
-                                                    {item.transaction_date}<br/>
-                                                    {item.account_id}<br/>
-                                                    USD {item.transaction_amount}<br/>
-                                                    {item.comment}<br/>
-                                                    {item.merchant_id}<br/>
-                                                    {item.transaction_type}
-                                                </td>
+                                                {item.transaction_id ? (
+                                                    <>
+                                                        <td>
+                                                            Transaction ID:<br/>
+                                                            Transaction Date:<br/>
+                                                            Account ID:<br/>
+                                                            Transaction Amount:<br/>
+                                                            Comment:<br/>
+                                                            Merchant ID:<br/>
+                                                            Transaction Type:<br/>
+                                                        </td>
+                                                        <td>
+                                                            {item.transaction_id}<br/>
+                                                            {item.transaction_date}<br/>
+                                                            {item.account_id}<br/>
+                                                            USD {item.transaction_amount}<br/>
+                                                            {item.comment}<br/>
+                                                            {item.merchant_id}<br/>
+                                                            {item.transaction_type}
+                                                        </td>
+                                                    </>
+                                                ) : 
+                                                    <td>
+                                                        <pre>{JSON.stringify(txnInfo, null, 4)}</pre>
+                                                    </td>
+                                                }
                                             </tr>
                                         ))}
                                     </tbody>
