@@ -5,7 +5,7 @@ export const AsgardeoConfig = {
     clientID:"",
     baseUrl: "https://localhost:9443",
     // baseUrl: "https://api.asgardeo.io/t/<org_name>",
-    scope: ["openid", "profile"]
+    scope: ["openid", "profile", "groups", "roles"]
 };
 
 // Service Host and Port

@@ -13,7 +13,7 @@ const LoginStatusBar = props => {
         if (state.isAuthenticated === true) {
             let token = await getDecodedIDToken();
             props.setDecodedToken(token);
-            console.log("ID Token: " + token);
+            console.log("ID Token: " + JSON.stringify(token));
             localStorage.setItem('decodedId', token);
         }
     };
@@ -69,8 +69,10 @@ const Navigation = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        {/* <Nav.Link as={Link} to="/">Home</Nav.Link> */}
-                        {<Nav.Link as={Link} to="/acctandtxns">Acct & Txns</Nav.Link >}
+                        {
+                            decodedToken.roles && decodedToken.roles.indexOf('view_accts_and_txns') !== -1 && 
+                            <Nav.Link as={Link} to="/acctandtxns">Acct & Txns</Nav.Link >
+                        }
                     </Nav>
                 </Navbar.Collapse>
                 <Navbar.Collapse className="justify-content-end">
