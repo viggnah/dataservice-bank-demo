@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<sequence name="CallAccountDSEP" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
-    <log level="full"/>
-    <call>
-        <endpoint key="AccountDSEP"/>
-    </call>
-    <log level="full"/>
-</sequence>
