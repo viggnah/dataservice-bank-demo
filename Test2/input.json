@@ -1,0 +1,25 @@
+{
+  "transactionId": "TXN12345",
+  "customerId": "CUST67890",
+  "transactionDate": "2024-10-10",
+  "amount": 250.75,
+  "currency": "USD",
+  "status": "Completed",
+  "paymentMethods": [
+    {
+      "type": "CreditCard",
+      "provider": "Visa",
+      "last4Digits": "1234"
+    },
+    {
+      "type": "PayPal",
+      "provider": "PayPal",
+      "accountEmail": "customer@example.com"
+    }
+  ],
+  "merchant": {
+    "merchantId": "MCH98765",
+    "merchantName": "SuperStore"
+  }
+}
+

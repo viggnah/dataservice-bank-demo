@@ -1,0 +1,26 @@
+<transaction>
+  <transactionId>TXN12345</transactionId>
+  <customerId>CUST67890</customerId>
+  <transactionDate>2024-10-10</transactionDate>
+  <amount>
+    <value>250.75</value>
+    <currency>USD</currency>
+  </amount>
+  <status>Completed</status>
+  <paymentMethods>
+    <paymentMethod>
+      <type>CreditCard</type>
+      <provider>Visa</provider>
+      <last4Digits>1234</last4Digits>
+    </paymentMethod>
+    <paymentMethod>
+      <type>PayPal</type>
+      <provider>PayPal</provider>
+      <accountEmail>customer@example.com</accountEmail>
+    </paymentMethod>
+  </paymentMethods>
+  <merchant>
+    <merchantInfo>MCH98765 - SuperStore</merchantInfo> <!-- Concatenated fields -->
+  </merchant>
+</transaction>
+

@@ -1,0 +1,23 @@
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="ErrorHandlingSequence">
+    <log level="custom">
+        <property name="ERROR_CODE" expression="get-property('ERROR_CODE')"/>
+        <property name="ERROR_MESSAGE" expression="get-property('ERROR_MESSAGE')"/>
+        <property name="ERROR_DETAIL" expression="get-property('ERROR_DETAIL')"/>
+    </log>
+    <payloadFactory media-type="json">
+        <format>
+            {
+                "error": true,
+                "message": "An error occurred processing your request",
+                "details": "Error Code: $1, Error Message: $2"
+            }
+        </format>
+        <args>
+            <arg evaluator="xml" expression="get-property('ERROR_CODE')"/>
+            <arg evaluator="xml" expression="get-property('ERROR_MESSAGE')"/>
+        </args>
+    </payloadFactory>
+    <property name="HTTP_SC" value="500" scope="axis2"/>
+    <property name="messageType" value="application/json" scope="axis2"/>
+    <respond/>
+</sequence>

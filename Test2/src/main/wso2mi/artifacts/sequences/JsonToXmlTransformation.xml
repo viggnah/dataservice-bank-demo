@@ -1,0 +1,6 @@
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="JsonToXmlTransformation">
+    <log category="INFO" level="full" description="***Log before DataMapper***"/>
+    <datamapper config="gov:/datamapper/JsonToXmlMapping/JsonToXmlMapping.dmc" inputSchema="gov:/datamapper/JsonToXmlMapping/JsonToXmlMapping_inputSchema.json" outputSchema="gov:/datamapper/JsonToXmlMapping/JsonToXmlMapping_outputSchema.json" inputType="JSON" outputType="XML"/>
+    <log category="INFO" level="full" description="***Log after DataMapper***"/>
+    <property name="messageType" value="application/xml" scope="axis2"/>
+</sequence>

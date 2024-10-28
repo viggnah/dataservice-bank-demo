@@ -1,0 +1,20 @@
+<api xmlns="http://ws.apache.org/ns/synapse" name="MerchantPayAPI" context="/merchant">
+    <resource methods="POST" uri-template="/pay">
+        <inSequence>
+            <log category="INFO" level="custom">
+                <property name="***Incoming Payload***" expression="json-eval($)"/>
+            </log>
+            <payloadFactory media-type="json" template-type="default">
+                <format>$1</format>
+                <args>
+                    <arg expression="$" evaluator="json"/>
+                </args>
+            </payloadFactory>
+            <sequence key="JsonToXmlTransformation"/>
+            <sequence key="CreateResponseSequence"/>
+        </inSequence>
+        <faultSequence>
+            <sequence key="ErrorHandlingSequence"/>
+        </faultSequence>
+    </resource>
+</api>

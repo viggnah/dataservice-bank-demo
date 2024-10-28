@@ -1,0 +1,21 @@
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="CreateResponseSequence">
+    <payloadFactory media-type="xml">
+        <format>
+            <acknowledgement>
+                <message>Transaction processed successfully</message>
+                <transactionId>$1</transactionId>
+            </acknowledgement>
+        </format>
+        <args>
+            <arg evaluator="xml" expression="//transactionId/text()"/>
+        </args>
+    </payloadFactory>
+    <log category="INFO" level="full" description="***Log of XML Payload Generated Acking***">
+        <property name="***Log of XML Payload Generated Acking***" value="***Log of XML Payload Generated Acking***"/>
+    </log>
+    <property name="messageType" value="application/json" scope="axis2"/>
+    <log level="custom">
+        <property name="RESPONSE" expression="json-eval($)"/>
+    </log>
+    <respond/>
+</sequence>
