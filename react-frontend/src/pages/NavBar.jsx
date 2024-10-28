@@ -45,7 +45,7 @@ const LoginStatusBar = props => {
             </div>
         );
     } else {
-        return <></>
+        // return <></>
         return <Nav.Link onClick={() => signIn()}>Login</Nav.Link>
     }
 }
@@ -70,7 +70,7 @@ const Navigation = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         {
-                            decodedToken.roles && decodedToken.roles.indexOf('view_accts_and_txns') !== -1 && 
+                            // decodedToken.roles && decodedToken.roles.indexOf('view_accts_and_txns') !== -1 && 
                             <Nav.Link as={Link} to="/acctandtxns">Acct & Txns</Nav.Link >
                         }
                     </Nav>

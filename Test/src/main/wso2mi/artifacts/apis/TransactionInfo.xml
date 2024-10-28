@@ -2,13 +2,12 @@
 <api context="/transaction" name="TransactionInfo" statistics="enable" trace="enable" xmlns="http://ws.apache.org/ns/synapse">
     <resource methods="GET" uri-template="/{account_id}">
         <inSequence>
-			<log/>
+            <log category="INFO" level="full"/>
 			<call>
 				<endpoint key="TransactionDSEP"/>
-			</call>
+            </call>
             <respond/>
-		</inSequence>
-        <outSequence/>
+        </inSequence>
         <faultSequence/>
     </resource>
 </api>
