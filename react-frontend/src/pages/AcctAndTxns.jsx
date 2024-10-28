@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Col, Container, Form, Row, Button, Table, Alert } from "react-bootstrap";
 import { useEffect, useState } from "react";
-import { Hosts, AccessToken } from "../constants/config";
+import { Hosts, Headers, AccessToken } from "../constants/config";
 
 const AcctAndTxns = () => {
     const [fetchData, setFetchData] = useState(false);
@@ -14,26 +14,18 @@ const AcctAndTxns = () => {
     const MI_TXN_HOST = Hosts.miTxnHost;
     const APIM_TXN_HOST = Hosts.apimTxnHost;
 
-    const headers = {
-        headers: { 
-            // Authorization: `Bearer ${localStorage.getItem('accessToken')}`, 
-            Authorization: `Bearer ${AccessToken}`, 
-            Accept: 'application/json' 
-        }
-    };
-
     useEffect(() => {
         if (fetchData === false) {
             return;
         }
-        axios.get(APIM_ACCT_HOST + acctId, headers).then(responseData => {
+        axios.get(APIM_ACCT_HOST + acctId, Headers).then(responseData => {
             setAcctInfo(responseData.data);
         }).catch(error => {
             if (error.response.status === 429 || error.response.status === 403 || error.response.status === 401) {
                 setAcctInfo({ERROR: error.response.data});
             }
         });
-        axios.get(APIM_TXN_HOST + acctId, headers).then(responseData => {
+        axios.get(APIM_TXN_HOST + acctId, Headers).then(responseData => {
             if (responseData.data.transactions.transaction !== undefined) {
                 setTxnInfo(responseData.data.transactions.transaction);
             } else {

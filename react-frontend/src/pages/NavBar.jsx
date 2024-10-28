@@ -71,8 +71,9 @@ const Navigation = () => {
                     <Nav className="me-auto">
                         {
                             // decodedToken.roles && decodedToken.roles.indexOf('view_accts_and_txns') !== -1 && 
-                            <Nav.Link as={Link} to="/acctandtxns">Acct & Txns</Nav.Link >
+                            // <Nav.Link as={Link} to="/acctandtxns">Acct & Txns</Nav.Link >
                         }
+                        <Nav.Link as={Link} to="/merchantpay">Merchant Pay</Nav.Link >
                     </Nav>
                 </Navbar.Collapse>
                 <Navbar.Collapse className="justify-content-end">

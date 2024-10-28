@@ -2,6 +2,7 @@ import Navigation from "./pages/NavBar";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from "./pages/Home";
 import AcctAndTxns from "./pages/AcctAndTxns";
+import MerchantPay from "./pages/MerchantPay";
 import { AuthProvider } from "@asgardeo/auth-react";
 import { AsgardeoConfig } from "./constants/config";
 
@@ -20,6 +21,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} ></Route>
             <Route path="/acctandtxns" element={<AcctAndTxns />} ></Route>
+            <Route path="/merchantpay" element={<MerchantPay />} ></Route>
           </Routes>
         </BrowserRouter>
       </AuthProvider>
