@@ -11,10 +11,11 @@ npm install && npm start
 > ![How MI fetches data from a database](./readme-imgs/MI.png)
 
 * Run the sql script `bankinfo.sql` in your MySQL database
-* Import the `Test` folder into [Integration Studio](https://wso2.com/micro-integrator/) (Go to Download -> Other Components -> Integration Studio)
-* Import the `mysql-connector-java-8.x.x.jar` (according to your MySQL version) into the `IntegrationStudio.app/Contents/Eclipse/runtime/microesb/lib` folder (on Mac)
-* Left click on the `TestCompositeExporter` and select `Export Project Artifacts and Run`
-* Call the API using the following command and test first:
+* Install Visual Studio Code's *Micro Integrator* extension
+* Download the [Micro Integrator runtime](https://wso2.com/micro-integrator/) and unpack the archive
+* Import the `Test` folder into Visual Studio Code (Click the Micro Integrator Extension -> Open MI Project)
+* Click on the Play button on the top panel of VS Code (`Build and Run`), set the path to the Micro Integrator runtime folder (only needed for the first time)
+* Test from VS Code's in-built testing pannel (use account ID's `1` or `2`) or call the API using the following commands:
 ```bash
 curl -X GET "http://localhost:8290/services/BankInfoDataService/account/1" -H "accept: application/json"
 
@@ -30,7 +31,7 @@ The header `accept: application/json` is required to get the output in JSON form
 ## Expose the REST API via API Manager
 >![Interaction between MI and APIM](./readme-imgs/MI+APIM.png)
 * Start the [API Manager](https://wso2.com/api-manager/)
-* Configure the embedded MI in Integration Studio to publish the API as a service to APIM by adding the service catalog configuration (Note: I'm running APIM on 9500 instead of default 9443):
+* Configure your previously downloaded MI runtime to publish the API as a service to APIM by adding the service catalog configuration in `conf/deployment.toml` (Note: I'm running APIM on 9500 instead of the default 9443):
 ```toml
 [[service_catalog]]
 apim_host = "https://localhost:9500"
@@ -38,11 +39,14 @@ enable = true
 username = "admin"
 password = "admin"
 ```
-* Left click on the `TestCompositeExporter` and select `Export Project Artifacts and Run` again. This time it should be show up on the service catalog in APIM.
+* Click on the Play button on the top panel of VS Code (`Build and Run`), set the path to the Micro Integrator runtime folder (only needed for the first time). This time it should be show up on the service catalog in APIM.
 * Create an API out of the service and publish it
 * Subscribe to the API and generate the keys from the developer portal
 * Generate the access token from the developer portal as well
-* Hard code the access token for now in the React App to call the API (will be changed in the next step)
+* Create a `secrets.js` file in the `react-frontend/src/constants` folder and hard code the access token for now to call the API (will be changed in the next step):
+```js
+export const ACCESS_TOKEN = "<YOUR_ACCESS_TOKEN>"
+```
 
 > **Troubleshooting Info**\
 If you get CORS errors, try deploying the sample PizzaShack API and call it from the Try Out tab in the publisher portal. If that also gives a CORS error, then restart the API Manager and try again. 
