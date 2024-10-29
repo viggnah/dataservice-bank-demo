@@ -44,13 +44,14 @@ const AcctAndTxns = () => {
         }
         axios.post(MI_PAY_HOST, payload, Headers).then(responseData => {
             setPaymentInfo(responseData.data);
+            setShowSuccessImage(true);
         }).catch(error => {
             if (error.response.status === 429 || error.response.status === 403 || error.response.status === 401) {
                 setPaymentInfo({ERROR: error.response.data});
+                setShowSuccessImage(false);
             }
         });
         setFetchData(false);
-        setShowSuccessImage(true); 
     }, [fetchData]);
 
     return (

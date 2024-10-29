@@ -1,4 +1,4 @@
-<api xmlns="http://ws.apache.org/ns/synapse" name="MerchantPayAPI" context="/merchant">
+<api xmlns="http://ws.apache.org/ns/synapse" name="MerchantPay" context="/merchant">
     <resource methods="POST" uri-template="/pay">
         <inSequence>
             <log category="INFO" level="custom">
