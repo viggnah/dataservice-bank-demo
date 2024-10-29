@@ -1,12 +1,14 @@
+import { ACCESS_TOKEN, ASGARDEO_ORG, CLIENT_ID_LOCAL, CLIENT_SECRET_LOCAL, CLIENT_ID_ASGARDEO } from "./secrets";
+
 //Setup Asgardeo Auth React SDK
 export const AsgardeoConfig = {
     signInRedirectURL: "http://localhost:3000",
     signOutRedirectURL: "http://localhost:3000",
-    clientID: "",
-    // clientSecret: "",
-    // clientID: "",
+    clientID: CLIENT_ID_LOCAL,
+    // clientSecret: CLIENT_SECRET_LOCAL,
+    // clientID: CLIENT_ID_ASGARDEO,
     baseUrl: "https://localhost:9443",
-    // baseUrl: "https://api.asgardeo.io/t/<org>",
+    // baseUrl: "https://api.asgardeo.io/t/" + ASGARDEO_ORG,
     scope: ["openid", "profile", "groups", "roles"]
 };
 
@@ -27,14 +29,10 @@ export const Hosts = {
 
 };
 
-export const AccessToken = ""
-
-
-
 export const Headers = {
     headers: { 
         // Authorization: `Bearer ${localStorage.getItem('accessToken')}`, 
-        Authorization: `Bearer ${AccessToken}`, 
+        Authorization: `Bearer ${ACCESS_TOKEN}`, 
         Accept: 'application/json' 
     }
 };
