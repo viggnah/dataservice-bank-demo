@@ -42,7 +42,7 @@ const AcctAndTxns = () => {
                 "merchantName": "SuperStore"
             }
         }
-        axios.post(MI_PAY_HOST, payload, Headers).then(responseData => {
+        axios.post(APIM_PAY_HOST, payload, Headers).then(responseData => {
             setPaymentInfo(responseData.data);
             setShowSuccessImage(true);
         }).catch(error => {

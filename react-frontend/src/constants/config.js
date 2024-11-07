@@ -1,4 +1,4 @@
-import { ACCESS_TOKEN, ASGARDEO_ORG, CLIENT_ID_LOCAL, CLIENT_SECRET_LOCAL, CLIENT_ID_ASGARDEO } from "./secrets";
+import { ACCESS_TOKEN, CLIENT_ID_LOCAL, CLIENT_SECRET_LOCAL, CLIENT_ID_ASGARDEO, ASGARDEO_ORG } from "./secrets";
 
 //Setup Asgardeo Auth React SDK
 export const AsgardeoConfig = {
@@ -32,7 +32,7 @@ export const Hosts = {
 export const Headers = {
     headers: { 
         // Authorization: `Bearer ${localStorage.getItem('accessToken')}`, 
-        Authorization: `Bearer ${ACCESS_TOKEN}`, 
+        Authorization: 'Bearer ' + ACCESS_TOKEN, 
         Accept: 'application/json' 
     }
 };
